@@ -48,7 +48,7 @@ public class Triangle {
 			return false;
 	}
 
-	public double calacArea() {
+	public double calcArea() {
 		if (sideTest()) {
 			double perHalf = (side1 + side2 + side3) / 2;
 			double area = Math.sqrt(perHalf * (perHalf - side1) * (perHalf - side2) * (perHalf - side3));
@@ -60,7 +60,7 @@ public class Triangle {
 	@Override
 	public String toString() {
 		return "Triangle [side1=" + side1 + ", side2=" + side2 + ", side3=" + side3 + ", exists-" + sideTest()
-				+ ", calacArea()=" + calacArea() + "]";
+				+ ", calcArea()=" + calcArea() + "]";
 	}
 
 	
