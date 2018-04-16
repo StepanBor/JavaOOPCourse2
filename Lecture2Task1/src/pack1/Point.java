@@ -2,13 +2,13 @@ package pack1;
 
 public class Point {
 
-	private double X;
-	private double Y;
+	private double x;
+	private double y;
 
 	public Point(double x, double y) {
 		super();
-		X = x;
-		Y = y;
+		this.x = x;
+		this.y = y;
 	}
 
 	public Point() {
@@ -17,19 +17,24 @@ public class Point {
 	}
 
 	public double getX() {
-		return X;
+		return x;
 	}
 
 	public void setX(double x) {
-		X = x;
+		this.x = x;
 	}
 
 	public double getY() {
-		return Y;
+		return y;
 	}
 
 	public void setY(double y) {
-		Y = y;
+		this.y = y;
 	}
 
+	public double getDistToPoint(Point p) {
+		return Math.sqrt((Math.pow((x-p.x), 2))+(Math.pow((y-p.y), 2)));
+	}
+	
+	
 }
