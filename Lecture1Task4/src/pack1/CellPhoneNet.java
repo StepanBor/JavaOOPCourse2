@@ -9,14 +9,16 @@ public class CellPhoneNet {
 		phones[2]=new Phone(333, "Sony", "Z3");
 		phones[3]=new Phone(444, "Samsung", "s8");
 		
-		Network net=new Network("Life", 4);
+		Network net=new Network("Life", 5);
 		
 		for (int i = 0; i < phones.length; i++) {
 			phones[i].registerInNetwork(net);
 		}
 		
 		
-		//net.getAbonentsInf();	
+		net.getAbonentsInf();	
+		
+		System.out.println();
 		
 		phones[1].call(net, 444);
 		phones[1].call(net, 888);
