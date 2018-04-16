@@ -17,6 +17,13 @@ public class Phone {
 
 	
 
+	public Phone() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public int getNumber() {
 		return number;
 	}

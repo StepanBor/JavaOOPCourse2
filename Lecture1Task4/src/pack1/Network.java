@@ -13,7 +13,11 @@ public class Network {
 		this.netSize=netSize;
 		count=0;
 		network=new Phone[netSize];
+		for(int i=0; i<network.length; i++) {
+			network[i]=new Phone();
+		}
 	}
+	
 	
 	
 	public Network() {
