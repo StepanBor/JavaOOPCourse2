@@ -1,5 +1,7 @@
 package pack1;
 
+import java.util.Arrays;
+
 public class Circle extends Shape {
 
 	
@@ -10,9 +12,9 @@ public class Circle extends Shape {
  	public Circle(Point p1, Point p2) {
 		super();
 		
-		p[1]=p1;
-		p[2]=p2;
-		radius=p[1].getDistToPoint(p[2]);
+		p[0]=p1;
+		p[1]=p2;
+		radius=p[0].getDistToPoint(p[1]);
 	}
 	
 
@@ -23,22 +25,22 @@ public class Circle extends Shape {
 
 
 	public Point getP1() {
-		return p[1];
+		return p[0];
 	}
 
 
 	public void setP1(Point p1) {
-		p[1] = p1;
+		p[0] = p1;
 	}
 
 
 	public Point getP2() {
-		return p[2];
+		return p[1];
 	}
 
 
 	public void setP2(Point p2) {
-		p[2] = p2;
+		p[1] = p2;
 	}
 
 
@@ -53,7 +55,15 @@ public class Circle extends Shape {
 	}
 	
 	public Point getCenterPoint() {
-		return p[1];
+		return p[0];
 	}
 
+
+	@Override
+	public String toString() {
+		return "Circle [radius=" + radius + ", getPerimetr()=" + getPerimetr()
+				+ ", gatArea()=" + gatArea() + ", getCenterPoint()=" + getCenterPoint() + "]";
+	}
+
+	
 }

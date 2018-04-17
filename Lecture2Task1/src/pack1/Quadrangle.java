@@ -1,5 +1,7 @@
 package pack1;
 
+import java.util.Arrays;
+
 public class Quadrangle extends Shape {
 
 	private Point[] p = new Point[4];
@@ -75,4 +77,12 @@ public class Quadrangle extends Shape {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Quadrangle [side1=" + side1 + ", side2=" + side2 + ", side3=" + side3
+				+ ", side4=" + side4 + ", getCenterPoint()=" + getCenterPoint() + ", getPerimetr()=" + getPerimetr()
+				+ ", gatArea()=" + gatArea() + "]";
+	}
+
+	
 }

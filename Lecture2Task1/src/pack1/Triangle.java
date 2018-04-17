@@ -1,5 +1,7 @@
 package pack1;
 
+import java.util.Arrays;
+
 public class Triangle extends Shape {
 
 	private Point[] p = new Point[3];
@@ -69,4 +71,11 @@ public class Triangle extends Shape {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Triangle [side1=" + side1 + ", side2=" + side2 + ", side3=" + side3
+				+ ", getCenterPoint()=" + getCenterPoint() + ", getPerimetr()=" + getPerimetr() + ", gatArea()=" + gatArea() + "]";
+	}
+
+	
 }
