@@ -9,11 +9,7 @@ public class Quadrangle extends Shape {
 	// private Point p2;
 	// private Point p3;
 	// private Point p4;
-
-	private double side1;
-	private double side2;
-	private double side3;
-	private double side4;
+	private double[] side = new double[4];
 
 	public Quadrangle(Point p1, Point p2, Point p3, Point p4) {
 		super();
@@ -21,10 +17,18 @@ public class Quadrangle extends Shape {
 		p[1] = p2;
 		p[2] = p3;
 		p[3] = p4;
-		side1 = p[0].getDistToPoint(p[1]);
-		side2 = p[1].getDistToPoint(p[2]);
-		side3 = p[2].getDistToPoint(p[3]);
-		side4 = p[3].getDistToPoint(p[0]);
+		// side[0] = p[0].getDistToPoint(p[1]);
+		// side[1] = p[1].getDistToPoint(p[2]);
+		// side[2] = p[2].getDistToPoint(p[3]);
+		// side[3] = p[3].getDistToPoint(p[0]);
+		for (int i = 0; i < side.length; i++) {
+//			if (i == side.length - 1) {
+//				side[i] = p[i].getDistToPoint(p[0]);
+//				continue;
+//			}
+//			side[i] = p[i].getDistToPoint(p[i + 1]);
+			side[i] = p[i].getDistToPoint((i == side.length - 1 ? p[0] : p[i + 1]));
+		}
 	}
 
 	public Quadrangle() {
@@ -34,20 +38,20 @@ public class Quadrangle extends Shape {
 
 	public Point getCenterPoint() {
 		Point c = new Point();
-		c.setX((p[0].getX() + p[1].getX() + p[2].getX()+p[3].getX()) / 4);
-		c.setY((p[0].getY() + p[1].getY() + p[2].getY()+p[3].getY()) / 4);
+		c.setX((p[0].getX() + p[1].getX() + p[2].getX() + p[3].getX()) / 4);
+		c.setY((p[0].getY() + p[1].getY() + p[2].getY() + p[3].getY()) / 4);
 		return c;
 	}
-	
+
 	@Override
 	public double getPerimetr() {
-		return side1 + side2 + side3 + side4;
+		return side[0] + side[1] + side[2] + side[3];
 	}
 
 	@Override
 	public double gatArea() {
-		double perHalf = (side1 + side2 + side3 + side4) / 2;
-		double area = Math.sqrt((perHalf - side1) * (perHalf - side2) * (perHalf - side3) * (perHalf - side4));
+		double perHalf = (side[0] + side[1] + side[2] + side[3]) / 2;
+		double area = Math.sqrt((perHalf - side[0]) * (perHalf - side[1]) * (perHalf - side[2]) * (perHalf - side[3]));
 		return area;
 	}
 
@@ -56,8 +60,8 @@ public class Quadrangle extends Shape {
 			for (int i = 0; i < p.length; i++) {
 				if (index == i) {
 					return p[i];
-
 				}
+
 			}
 		}
 		Point k = new Point();
@@ -72,6 +76,11 @@ public class Quadrangle extends Shape {
 					p[i] = k;
 
 				}
+
+			}
+			for (int i = 0; i < side.length; i++) {
+				
+				side[i] = p[i].getDistToPoint((i == side.length - 1 ? p[0] : p[i + 1]));
 			}
 		}
 
@@ -79,10 +88,9 @@ public class Quadrangle extends Shape {
 
 	@Override
 	public String toString() {
-		return "Quadrangle [side1=" + side1 + ", side2=" + side2 + ", side3=" + side3
-				+ ", side4=" + side4 + ", getCenterPoint()=" + getCenterPoint() + ", getPerimetr()=" + getPerimetr()
+		return "Quadrangle [side[0]=" + side[0] + ", side[1]=" + side[1] + ", side[2]=" + side[2] + ", side[3]="
+				+ side[3] + ", getCenterPoint()=" + getCenterPoint() + ", getPerimetr()=" + getPerimetr()
 				+ ", gatArea()=" + gatArea() + "]";
 	}
 
-	
 }
