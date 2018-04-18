@@ -22,6 +22,9 @@ public class CellPhoneNet {
 		phones[1].call(444);
 		System.out.println();
 		phones[1].call(888);
+		
+		Phone k=new Phone(999, "Nokia", "N3310");
+		k.call(444,net);
 
 	}
 
