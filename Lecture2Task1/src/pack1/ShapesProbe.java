@@ -28,6 +28,8 @@ public class ShapesProbe {
 		d1.clearPart(0);
 		System.out.println(d1);
 		System.out.println();
+		
+		d1.setPart(100500, q1);
 				
 		System.out.println("Total area is "+d1.getTotalArea());
 

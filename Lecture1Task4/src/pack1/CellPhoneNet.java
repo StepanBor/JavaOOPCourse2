@@ -17,9 +17,11 @@ public class CellPhoneNet {
 		
 		
 		net.getAbonentsInf();	
+		System.out.println();
 		
-		phones[1].call(net, 444);
-		phones[1].call(net, 888);
+		phones[1].call(444);
+		System.out.println();
+		phones[1].call(888);
 
 	}
 

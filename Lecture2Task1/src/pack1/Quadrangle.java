@@ -22,11 +22,6 @@ public class Quadrangle extends Shape {
 		// side[2] = p[2].getDistToPoint(p[3]);
 		// side[3] = p[3].getDistToPoint(p[0]);
 		for (int i = 0; i < side.length; i++) {
-//			if (i == side.length - 1) {
-//				side[i] = p[i].getDistToPoint(p[0]);
-//				continue;
-//			}
-//			side[i] = p[i].getDistToPoint(p[i + 1]);
 			side[i] = p[i].getDistToPoint((i == side.length - 1 ? p[0] : p[i + 1]));
 		}
 	}

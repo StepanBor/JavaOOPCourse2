@@ -6,6 +6,7 @@ public class Phone {
 	private String vendor;
 	private String model;
 	private String networkName;
+	private Network net;
 	
 	public Phone(int number, String vendor, String model) {
 		super();
@@ -56,15 +57,36 @@ public class Phone {
 	public void setNetworkName(String networkName) {
 		this.networkName = networkName;
 	}
+	
+	public Network getNet() {
+		return net;
+	}
+
+	public void setNet(Network net) {
+		this.net = net;
+	}
+
+
 
 	public void registerInNetwork(Network net) {
 		net.regPhone(this);
 		
 	}
+
+	public void call(int num, Network net) {
+		System.out.println(net.call(num, this));
+		//return net.call(num, this);
+	}
 	
-	public String call(Network net, int num) {
-		System.out.println(net.call(num));
-		return net.call(num);
+	public void call(int num) {
+		System.out.println(net.call(num, this));
+		//return net.call(num, this);
+	}
+	
+	public void incomeCall(Phone outer) {
+		
+		System.out.println(this+" have received incoming call from "+outer.toString());
+		
 	}
 
 	@Override

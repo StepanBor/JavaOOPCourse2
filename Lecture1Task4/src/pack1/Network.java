@@ -33,12 +33,12 @@ public class Network {
 		this.name = name;
 	}
 	
-	public int getBaseSize() {
+	public int getNetSize() {
 		return netSize;
 	}
 	
-	public void setBaseSize(int baseSize) {
-		this.netSize = baseSize;
+	public void setNetSize(int netSize) {
+		this.netSize = netSize;
 	}
 	
 	public Phone[] getNetwork() {
@@ -48,26 +48,25 @@ public class Network {
 	public void setNetwork(Phone[] base) {
 		this.network = base;
 	}
-	
-	
-	
-	
+		
 	public void regPhone(Phone phone) {
 		network[count]=phone;
 		phone.setNetworkName(name);
+		phone.setNet(this);
 		count++;
-		
 	}
 	
-	public String call(int num) {
+	public String call(int num, Phone caller) {
 		
 		for (int i = 0; i < network.length; i++) {
 			if(network[i].getNumber()==num) {
-				
-				return "beep-beep "+network[i].toString();
+				//System.out.println(caller+" is calling to "+network[i]);
+				network[i].incomeCall(caller);
+				return caller+" is calling to "+network[i];
 			}
 		}
-		
+		//System.out.println();
+		//System.out.println("abonent doesn't exist");
 		return "abonent doesn't exist";
 	}
 	

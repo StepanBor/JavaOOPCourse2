@@ -8,18 +8,22 @@ public class Triangle extends Shape {
 	// private Point p1;
 	// private Point p2;
 	// private Point p3;
-	private double side1;
-	private double side2;
-	private double side3;
+	// private double side[0];
+	// private double side[1];
+	// private double side[2];
+	private double[] side = new double[3];
 
 	public Triangle(Point p1, Point p2, Point p3) {
 		super();
 		p[0] = p1;
 		p[1] = p2;
 		p[2] = p3;
-		side1 = p[0].getDistToPoint(p[1]);
-		side2 = p[1].getDistToPoint(p[2]);
-		side3 = p[2].getDistToPoint(p[0]);
+		// side[0] = p[0].getDistToPoint(p[1]);
+		// side[1] = p[1].getDistToPoint(p[2]);
+		// side[2] = p[2].getDistToPoint(p[0]);
+		for (int i = 0; i < side.length; i++) {
+			side[i] = p[i].getDistToPoint((i == side.length - 1 ? p[0] : p[i + 1]));
+		}
 	}
 
 	public Triangle() {
@@ -35,13 +39,13 @@ public class Triangle extends Shape {
 
 	@Override
 	public double getPerimetr() {
-		return side1 + side2 + side3;
+		return side[0] + side[1] + side[2];
 	}
 
 	@Override
 	public double gatArea() {
-		double perHalf = (side1 + side2 + side3) / 2;
-		double area = Math.sqrt(perHalf * (perHalf - side1) * (perHalf - side2) * (perHalf - side3));
+		double perHalf = (side[0] + side[1] + side[2]) / 2;
+		double area = Math.sqrt(perHalf * (perHalf - side[0]) * (perHalf - side[1]) * (perHalf - side[2]));
 		return area;
 	}
 
@@ -67,15 +71,18 @@ public class Triangle extends Shape {
 
 				}
 			}
+			for (int i = 0; i < side.length; i++) {
+
+				side[i] = p[i].getDistToPoint((i == side.length - 1 ? p[0] : p[i + 1]));
+			}
 		}
 
 	}
 
 	@Override
 	public String toString() {
-		return "Triangle [side1=" + side1 + ", side2=" + side2 + ", side3=" + side3
-				+ ", getCenterPoint()=" + getCenterPoint() + ", getPerimetr()=" + getPerimetr() + ", gatArea()=" + gatArea() + "]";
+		return "Triangle [side[0]=" + side[0] + ", side[1]=" + side[1] + ", side[2]=" + side[2] + ", getCenterPoint()="
+				+ getCenterPoint() + ", getPerimetr()=" + getPerimetr() + ", gatArea()=" + gatArea() + "]";
 	}
 
-	
 }
