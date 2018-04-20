@@ -21,17 +21,19 @@ public class Human {
 		this.sex = sex;
 		this.name = name;
 		this.lastname = lastname;
+		
 		try {
 			this.birthDay = sdf.parse(birthDay);
 		} catch (ParseException e) {
 			System.out.println(e);
-		}
+		} 
 
 		this.citizenship = citizenship;
 	}
 
 	public Human() {
 		super();
+		birthDay=new Date();
 
 	}
 
@@ -86,8 +88,10 @@ public class Human {
 
 	@Override
 	public String toString() {
-		return "Human [sdf=" + sdf + ", age=" + age + ", sex=" + sex + ", birthDay=" + sdf.format(birthDay)
-				+ ", citizenship=" + citizenship + "]";
+		return " age=" + age + ", sex=" + sex + ", name=" + name + ", lastname=" + lastname + ", birthDay="
+				+ sdf.format(birthDay) + ", citizenship=" + citizenship + "]";
 	}
+
+	
 
 }

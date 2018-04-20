@@ -5,26 +5,20 @@ public class Student extends Human {
 	private String groupeName;
 	private int course;
 	private double averegeBall;
+			
 	
-	
-	
-	public Student(int age, String sex, String birthDay, String citizenship, String groupe, int course,
-			double averegeBall) {
-		super(age, sex, birthDay, citizenship);
-		this.groupeName = groupe;
-		this.course = course;
-		this.averegeBall = averegeBall;
+
+	public Student(int age, String sex, String name, String lastname, String birthDay, String citizenship, double averegeBall) {
+		super(age, sex, name, lastname, birthDay, citizenship);
+		groupeName="noGroupe";
+		course=0;
+		this.averegeBall=averegeBall;
 	}
-	
-	
-	
+
 	public Student() {
 		super();
 		
 	}
-
-
-
 	
 	public String getGroupe() {
 		return groupeName;
@@ -50,7 +44,7 @@ public class Student extends Human {
 	@Override
 	public String toString() {
 		return "Student [groupeName=" + groupeName + ", course=" + course + ", averegeBall=" + averegeBall
-				+ ", toString()=" + super.toString() + "]";
+				 + super.toString() + "]\n";
 	}
 	
 	
