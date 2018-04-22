@@ -15,6 +15,7 @@ public class GroupeMain {
 		st[7]=new Student(18, "mail", "Bamba", "Balamba", "12:12:2000", "Uganda", 5.0);
 		st[8]=new Student(18, "mail", "Aleksandr", "Aleksandrov", "12:12:2000", "Ukraine", 4.2);
 		st[9]=new Student(18, "mail", "Akim", "Caraedov", "12:12:2000", "Mongolia", 4.2);
+		
 		Groupe gr=new Groupe("LM-02", 1, 10);
 		
 		for (int i = 0; i < st.length; i++) {

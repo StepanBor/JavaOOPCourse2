@@ -89,6 +89,8 @@ public class Groupe {
 					index++;
 				}
 			}
+			studentList[index].setGroupeName("noGroupe");
+			studentList[index].setCourse(0);
 			studentList[index] = new Student();
 			count--;
 		}

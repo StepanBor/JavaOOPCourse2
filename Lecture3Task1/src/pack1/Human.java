@@ -2,18 +2,26 @@ package pack1;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Human {
 
 	SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
-
+	
+	
 	private int age;
 	private String sex;
 	private String name;
 	private String lastname;
 	private Date birthDay;
 	private String citizenship;
+	private Date today=new Date();
+	Calendar birthDayCal=Calendar.getInstance();
+	Calendar present=Calendar.getInstance();
+	
+	
+	
 
 	public Human(int age, String sex, String name, String lastname, String birthDay, String citizenship) {
 		super();
@@ -27,6 +35,8 @@ public class Human {
 		} catch (ParseException e) {
 			System.out.println(e);
 		} 
+		
+		birthDayCal.setTime(this.birthDay);
 
 		this.citizenship = citizenship;
 	}
