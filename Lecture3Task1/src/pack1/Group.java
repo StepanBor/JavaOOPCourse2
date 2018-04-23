@@ -16,10 +16,10 @@ public class Group {
 		this.course = course;
 		this.groupSize = groupSize;
 		count = 0;
-		studentList = new Student[groupSize];
-		for (int i = 0; i < studentList.length; i++) {
-			studentList[i] = new Student();
-		}
+		// studentList = new Student[groupSize];
+		// for (int i = 0; i < studentList.length; i++) {
+		// studentList[i] = new Student();
+		// }
 	}
 
 	public Group() {
@@ -59,20 +59,29 @@ public class Group {
 		this.count = count;
 	}
 
-	public void enrollStudent(Student student) /*throws GroupOverflowException*/  {
+	public void enrollStudent(Student student) /* throws GroupOverflowException */ {
 
 		try {
 			if (count < groupSize) {
-				studentList[count] = student;
-				count++;
-				student.setgroupName(groupName);
-				student.setCourse(course);
+				if (count == 0) {
+					studentList = new Student[++count];
+					studentList[count - 1] = student;
+					student.setgroupName(groupName);
+					student.setCourse(course);
+				} else {
+					//Student[] tempList;
+					studentList = Arrays.copyOf(studentList, ++count);
+					// count++;
+					studentList[count] = student;
+					student.setgroupName(groupName);
+					student.setCourse(course);
+				}
 			} else {
 				throw new GroupOverflowException();
 			}
-	} catch (GroupOverflowException e) {
-		System.out.println(e.getMessage());
-	}
+		} catch (GroupOverflowException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void swapStudent(int i, int j) {
@@ -124,7 +133,7 @@ public class Group {
 		for (int i = 0; i < studentList.length; i++) {
 
 			for (int j = 0; j < studentList.length - 1; j++) {
-				if (studentList[j].getAveregeBall() <= studentList[j+1].getAveregeBall()) {
+				if (studentList[j].getAveregeBall() <= studentList[j + 1].getAveregeBall()) {
 					swapStudent(j, j + 1);
 				}
 			}
@@ -140,11 +149,11 @@ public class Group {
 
 	public String searchStudent(String lastname) {
 		for (int i = 0; i < studentList.length; i++) {
-			if(studentList[i].getLastname().equalsIgnoreCase(lastname)) {
+			if (studentList[i].getLastname().equalsIgnoreCase(lastname)) {
 				return studentList[i].toString();
 			}
 		}
-		return "there is no student with "+lastname+" lastname";
+		return "there is no student with " + lastname + " lastname";
 	}
-	
+
 }
