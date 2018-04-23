@@ -23,9 +23,8 @@ public class Human {
 	
 	
 
-	public Human(int age, String sex, String name, String lastname, String birthDay, String citizenship) {
+	public Human(String sex, String name, String lastname, String birthDay, String citizenship) {
 		super();
-		this.age = age;
 		this.sex = sex;
 		this.name = name;
 		this.lastname = lastname;
@@ -37,6 +36,7 @@ public class Human {
 		} 
 		
 		birthDayCal.setTime(this.birthDay);
+		this.age = present.get(present.YEAR)-birthDayCal.get(birthDayCal.YEAR);
 
 		this.citizenship = citizenship;
 	}
@@ -47,6 +47,8 @@ public class Human {
 
 	}
 
+
+	
 	public int getAge() {
 		return age;
 	}

@@ -2,15 +2,15 @@ package pack1;
 
 public class Student extends Human {
 
-	private String groupeName;
+	private String groupName;
 	private int course;
 	private double averegeBall;
 			
 	
 
-	public Student(int age, String sex, String name, String lastname, String birthDay, String citizenship, double averegeBall) {
-		super(age, sex, name, lastname, birthDay, citizenship);
-		groupeName="noGroupe";
+	public Student(String sex, String name, String lastname, String birthDay, String citizenship, double averegeBall) {
+		super(sex, name, lastname, birthDay, citizenship);
+		groupName="nogroup";
 		course=0;
 		this.averegeBall=averegeBall;
 	}
@@ -20,11 +20,11 @@ public class Student extends Human {
 		
 	}
 	
-	public String getGroupe() {
-		return groupeName;
+	public String getgroup() {
+		return groupName;
 	}
-	public void setGroupeName(String groupe) {
-		this.groupeName = groupe;
+	public void setgroupName(String group) {
+		this.groupName = group;
 	}
 	public int getCourse() {
 		return course;
@@ -43,7 +43,7 @@ public class Student extends Human {
 
 	@Override
 	public String toString() {
-		return "Student [groupeName=" + groupeName + ", course=" + course + ", averegeBall=" + averegeBall
+		return "Student [groupName=" + groupName + ", course=" + course + ", averegeBall=" + averegeBall
 				 + super.toString() + "]\n";
 	}
 	

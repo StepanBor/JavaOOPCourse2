@@ -2,37 +2,37 @@ package pack1;
 
 import java.util.Arrays;
 
-public class Groupe {
+public class Group {
 
-	private String groupeName;
+	private String groupName;
 	private int course;
-	private int groupeSize;
+	private int groupSize;
 	private int count;
 	private Student[] studentList;
 
-	public Groupe(String groupeName, int course, int groupeSize) {
+	public Group(String groupName, int course, int groupSize) {
 		super();
-		this.groupeName = groupeName;
+		this.groupName = groupName;
 		this.course = course;
-		this.groupeSize = groupeSize;
+		this.groupSize = groupSize;
 		count = 0;
-		studentList = new Student[groupeSize];
+		studentList = new Student[groupSize];
 		for (int i = 0; i < studentList.length; i++) {
 			studentList[i] = new Student();
 		}
 	}
 
-	public Groupe() {
+	public Group() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getGroupeName() {
-		return groupeName;
+	public String getgroupName() {
+		return groupName;
 	}
 
-	public void setGroupeName(String groupeName) {
-		this.groupeName = groupeName;
+	public void setgroupName(String groupName) {
+		this.groupName = groupName;
 	}
 
 	public int getCourse() {
@@ -43,12 +43,12 @@ public class Groupe {
 		this.course = course;
 	}
 
-	public int getGroupeSize() {
-		return groupeSize;
+	public int getgroupSize() {
+		return groupSize;
 	}
 
-	public void setGroupeSize(int groupeSize) {
-		this.groupeSize = groupeSize;
+	public void setgroupSize(int groupSize) {
+		this.groupSize = groupSize;
 	}
 
 	public int getCount() {
@@ -59,20 +59,20 @@ public class Groupe {
 		this.count = count;
 	}
 
-	public void enrollStudent(Student student) {
+	public void enrollStudent(Student student) /*throws GroupOverflowException*/  {
 
 		try {
-			if (count < groupeSize) {
+			if (count < groupSize) {
 				studentList[count] = student;
 				count++;
-				student.setGroupeName(groupeName);
+				student.setgroupName(groupName);
 				student.setCourse(course);
 			} else {
-				throw new GroupeOverflowException();
+				throw new GroupOverflowException();
 			}
-		} catch (GroupeOverflowException e) {
-			System.out.println(e.getMessage());
-		}
+	} catch (GroupOverflowException e) {
+		System.out.println(e.getMessage());
+	}
 	}
 
 	public void swapStudent(int i, int j) {
@@ -89,7 +89,7 @@ public class Groupe {
 					index++;
 				}
 			}
-			studentList[index].setGroupeName("noGroupe");
+			studentList[index].setgroupName("nogroup");
 			studentList[index].setCourse(0);
 			studentList[index] = new Student();
 			count--;
@@ -134,7 +134,7 @@ public class Groupe {
 
 	@Override
 	public String toString() {
-		return "Groupe [groupeName=" + groupeName + ", course=" + course + ", studentList=\n"
+		return "group [groupName=" + groupName + ", course=" + course + ", studentList=\n"
 				+ Arrays.toString(studentList) + "]";
 	}
 
