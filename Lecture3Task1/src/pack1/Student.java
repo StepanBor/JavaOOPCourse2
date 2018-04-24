@@ -1,6 +1,11 @@
 package pack1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Student extends Human {
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
 
 	private String groupName;
 	private int course;
@@ -8,15 +13,26 @@ public class Student extends Human {
 			
 	
 
-	public Student(String sex, String name, String lastname, String birthDay, String citizenship, double averegeBall) {
+	public Student(String sex, String name, String lastname, String birthDay, String citizenship, double averegeBall) throws ParseException {
 		super(sex, name, lastname, birthDay, citizenship);
 		groupName="nogroup";
 		course=0;
 		this.averegeBall=averegeBall;
 	}
 
+	public Student(String[] stud) throws ParseException, NumberFormatException {
+		super(stud[0], stud[1], stud[2], stud[3], stud[4]);
+		groupName="noGroup";
+		course=0;
+		averegeBall=Double.parseDouble(stud[5]);
+		
+		
+	}
+	
 	public Student() {
 		super();
+		groupName="noGroup";
+		course=0;
 		
 	}
 	
@@ -44,7 +60,8 @@ public class Student extends Human {
 	@Override
 	public String toString() {
 		return "Student [groupName=" + groupName + ", course=" + course + ", averegeBall=" + averegeBall
-				 + super.toString() + "]\n";
+				 + " age=" + getAge() + ", sex=" + getSex() + ", name=" + getName() + ", lastname=" + getLastname()+ ", birthDay="
+							+ sdf.format(getBirthDay()) + ", citizenship=" + getCitizenship() + "]\n";
 	}
 	
 	

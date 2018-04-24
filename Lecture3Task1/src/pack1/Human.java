@@ -23,17 +23,17 @@ public class Human {
 	
 	
 
-	public Human(String sex, String name, String lastname, String birthDay, String citizenship) {
+	public Human(String sex, String name, String lastname, String birthDay, String citizenship) throws ParseException  {
 		super();
 		this.sex = sex;
 		this.name = name;
 		this.lastname = lastname;
 		
-		try {
+		//try {
 			this.birthDay = sdf.parse(birthDay);
-		} catch (ParseException e) {
-			System.out.println(e);
-		} 
+		//} catch (ParseException e) {
+			//System.out.println(e);
+		//} 
 		
 		birthDayCal.setTime(this.birthDay);
 		this.age = present.get(present.YEAR)-birthDayCal.get(birthDayCal.YEAR);
@@ -44,6 +44,8 @@ public class Human {
 	public Human() {
 		super();
 		birthDay=new Date();
+		name="noName";
+		lastname="noLastname";
 
 	}
 
@@ -100,9 +102,11 @@ public class Human {
 
 	@Override
 	public String toString() {
-		return " age=" + age + ", sex=" + sex + ", name=" + name + ", lastname=" + lastname + ", birthDay="
-				+ sdf.format(birthDay) + ", citizenship=" + citizenship + "]";
+		return "Human [age=" + age + ", sex=" + sex + ", name=" + name + ", lastname=" + lastname + ", birthDay="
+				+ birthDay + ", citizenship=" + citizenship + "]";
 	}
+
+	
 
 	
 
