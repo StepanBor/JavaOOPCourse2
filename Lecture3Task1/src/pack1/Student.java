@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 public class Student extends Human {
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
+	 private SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
 
 	private String groupName;
 	private int course;
@@ -64,6 +64,17 @@ public class Student extends Human {
 							+ sdf.format(getBirthDay()) + ", citizenship=" + getCitizenship() + "]\n";
 	}
 	
-	
+	@Override
+	public boolean equals(Object o) {
+		
+		Student st=(Student) o;
+		
+		if(this.getName().equals(st.getName()) && this.getLastname().equals(st.getLastname())) {
+			return true;
+		}
+		
+		return false;
+		
+	}
 	
 }

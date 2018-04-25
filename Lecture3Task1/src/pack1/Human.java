@@ -17,8 +17,8 @@ public class Human {
 	private Date birthDay;
 	private String citizenship;
 	private Date today=new Date();
-	Calendar birthDayCal=Calendar.getInstance();
-	Calendar present=Calendar.getInstance();
+	private Calendar birthDayCal=Calendar.getInstance();
+	private Calendar present=Calendar.getInstance();
 	
 	
 	

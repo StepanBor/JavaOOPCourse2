@@ -12,7 +12,7 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class Group {
 
-	SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
 
 	private String groupName;
 	private int course;
