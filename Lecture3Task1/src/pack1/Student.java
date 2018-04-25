@@ -64,8 +64,9 @@ public class Student extends Human {
 							+ sdf.format(getBirthDay()) + ", citizenship=" + getCitizenship() + "]\n";
 	}
 	
-	@Override
-	public boolean equals(Object o) {
+	
+	
+	public boolean myEquals(Object o) {
 		
 		Student st=(Student) o;
 		
