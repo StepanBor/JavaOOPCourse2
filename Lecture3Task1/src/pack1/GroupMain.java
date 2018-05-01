@@ -90,9 +90,7 @@ public class GroupMain {
 				: s1.getLastname().compareToIgnoreCase(s2.getLastname()));
 		System.out.println(Arrays.toString(voencom));
 		
-		FileInputStream fs;
-		System.err.println("55555555555");
-		
+		gr.createTxtFile("StudentList");		
 		
 
 	}

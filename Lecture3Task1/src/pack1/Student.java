@@ -59,12 +59,12 @@ public class Student extends Human {
 
 	@Override
 	public String toString() {
-		return "Student [groupName=" + groupName + ", course=" + course + ", averegeBall=" + averegeBall
-				 + " age=" + getAge() + ", sex=" + getSex() + ", name=" + getName() + ", lastname=" + getLastname()+ ", birthDay="
-							+ sdf.format(getBirthDay()) + ", citizenship=" + getCitizenship() + "]\n";
+		return "Student [name=" + getName() + ", lastname=" + getLastname()+ " groupName=" + groupName + ", course=" + course + ", averegeBall=" + averegeBall + " age=" + getAge() +", birthDay="+ sdf.format(getBirthDay()) + ", citizenship=" + getCitizenship() + "]\n";
 	}
 	
-	
+	public String toStringShort() {
+		return getName() + ", " + getLastname()+ ", " + groupName + ", " + course + ", " + averegeBall + ", " + getAge() +", "+ sdf.format(getBirthDay()) + ", " + getCitizenship() + System.lineSeparator();
+	}
 	
 	public boolean myEquals(Object o) {
 		

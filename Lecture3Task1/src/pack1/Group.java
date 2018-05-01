@@ -1,5 +1,9 @@
 package pack1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 
 public class Group implements IVoencom {
@@ -155,6 +159,33 @@ public class Group implements IVoencom {
 			}
 		}
 		return "there is no student with " + lastname + " lastname";
+
+	}
+	
+	public void createTxtFile(String fileName) {
+
+		File tempDirec = new File("tempDirectory");
+
+		tempDirec.mkdir();
+
+		File textFile = new File("tempDirectory\\" + fileName);
+		try (PrintWriter pw = new PrintWriter(textFile)) {
+			pw.print("Name,Lastname,groupe,course,averegeBall,age,birthDay,citizenship"+System.lineSeparator());
+			for (int i = 0; i < studentList.length; i++) {
+				if(studentList[i].getName().equals("noName")) {
+					continue;
+				}
+				pw.print(studentList[i].toStringShort());
+			}
+		} catch (FileNotFoundException e1) {
+
+			e1.printStackTrace();
+		}
+		try {
+			textFile.createNewFile();
+		} catch (IOException e) {
+			System.out.println(e);
+		}
 
 	}
 
