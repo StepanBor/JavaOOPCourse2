@@ -1,25 +1,14 @@
 package pack1;
 
-import java.text.SimpleDateFormat;
-
 import java.util.Arrays;
 
-import javax.swing.text.StyledDocument;
-
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
-
-
-public class Group {
-
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
+public class Group implements IVoencom {
 
 	private String groupName;
 	private int course;
 	private int groupSize;
 	private int count;
 	private Student[] studentList;
-	private Student[] voenCom;
 
 	public Group(String groupName, int course, int groupSize) {
 		super();
@@ -31,8 +20,7 @@ public class Group {
 		for (int i = 0; i < studentList.length; i++) {
 			studentList[i] = new Student();
 		}
-		voenCom = new Student[1];
-		
+
 	}
 
 	public Group() {
@@ -42,6 +30,10 @@ public class Group {
 
 	public String getgroupName() {
 		return groupName;
+	}
+
+	public Student[] getStudentList() {
+		return studentList;
 	}
 
 	public void setgroupName(String groupName) {
@@ -92,6 +84,7 @@ public class Group {
 	}
 
 	public void excludeStudent(int index) {
+
 		if (index <= count) {
 			for (int i = 0; i < studentList.length - 1; i++) {
 				if (index == i) {
@@ -99,11 +92,13 @@ public class Group {
 					index++;
 				}
 			}
-			studentList[index].setgroupName("nogroup");
-			studentList[index].setCourse(0);
+
 			studentList[index] = new Student();
 			count--;
+		} else {
+			System.out.println("Student not found.");
 		}
+
 	}
 
 	public void excludeStudent(Student student) {
@@ -118,39 +113,39 @@ public class Group {
 
 	}
 
+	
+	
+	public void sortByAge() {
+		Arrays.sort(studentList,
+				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
+						: (s1.getAge() - s2.getAge()));
+	}
+
 	public void sortByLastname() {
-
-		for (int i = 0; i < count; i++) {
-
-			for (int j = 0; j < count - 1; j++) {
-				if (studentList[j].getLastname().compareToIgnoreCase(studentList[j + 1].getLastname()) >= 0) {
-					swapStudent(j, j + 1);
-				}
-			}
-
-		}
+		Arrays.sort(studentList,
+				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
+						: s1.getLastname().compareToIgnoreCase(s2.getLastname()));
 	}
 
 	public void sortByAveregeBall() {
-		for (int i = 0; i < studentList.length; i++) {
-
-			for (int j = 0; j < studentList.length - 1; j++) {
-				if (studentList[j].getAveregeBall() <= studentList[j + 1].getAveregeBall()) {
-					swapStudent(j, j + 1);
-				}
-			}
-
-		}
+		Arrays.sort(studentList,
+				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
+						: (int) (s1.getAveregeBall() * 10 - s2.getAveregeBall() * 10));
 	}
 
-	@Override
-	public String toString() {
-		String temp = "group [groupName=" + groupName + ", course=" + course + ", studentList=\n";
-		sortByLastname();
-		for (int i = 0; i < count; i++) {
-			temp = temp + studentList[i].toString();
+	public void sortByParametr(int param) {
+		if (param == 1) {
+			System.out.println("Sort by age");
+			sortByAge();
 		}
-		return temp;
+		if (param == 2) {
+			System.out.println("Sort by lastname");
+			sortByLastname();
+		}
+		if (param == 3) {
+			System.out.println("Sort by average ball");
+			sortByAveregeBall();
+		}
 	}
 
 	public String searchStudent(String lastname) {
@@ -163,25 +158,34 @@ public class Group {
 
 	}
 
-	public Student[] voenCom() {
-		int tempCount = 0;
-		Student[] tempArr;
+	@Override
+	public String toString() {
+		String temp = "group [groupName=" + groupName + ", course=" + course + ", studentList:\n";
+
 		for (int i = 0; i < count; i++) {
-			if (studentList[i].getAge() >= 18 & studentList[i].getSex().equals("mail")) {
+			temp = temp + studentList[i].toString();
+		}
+		return temp;
+	}
+
+	@Override
+	public Human[] voencom(Human[] human) {
+
+		int tempCount = 0;
+		Human[] tempArr = new Human[1];
+		for (int i = 0; i < human.length; i++) {
+			if (human[i] != null && human[i].getAge() >= 18 && human[i].getSex().equals("mail")) {
 				if (tempCount == 0) {
-					voenCom[tempCount++] = studentList[i];
+					tempArr[tempCount++] = human[i];
 
 				} else {
-					tempArr = new Student[voenCom.length + 1];
-					for (int j = 0; j < voenCom.length; j++) {
-						tempArr[j] = voenCom[j];
-					}
-					voenCom = tempArr;
-					voenCom[tempCount++] = studentList[i];
+					tempArr = Arrays.copyOf(tempArr, tempArr.length + 1);
+					tempArr[tempCount++] = human[i];
 				}
 			}
 		}
-		return voenCom;
+		return tempArr;
+
 	}
 
 }

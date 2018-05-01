@@ -1,6 +1,7 @@
 package pack1;
 
-import java.awt.Component;
+import java.io.FileInputStream;
+//import java.awt.Component;
 import java.text.ParseException;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -9,6 +10,7 @@ public class GroupMain {
 
 	public static void main(String[] args) {
 		Group gr = new Group("LM-02", 1, 10);
+		Human[] voencom;
 
 		for (;;) {
 			int option = JOptionPane.showConfirmDialog(null, "Do you want to add student to group LM-02 manualy?");
@@ -40,7 +42,7 @@ public class GroupMain {
 		Student studProbe = new Student();
 		try {
 			st[0] = new Student("femail", "Maria", "Ponomarenko", "12:12:1998", "Ukraine", 2.5);
-			st[1] = new Student("mail", "Vlad", "Dracula", "12:12:1218", "Romania", 5.0);
+			st[1] = new Student("mail", "Vlad", "Dracula", "12:12:1212", "Romania", 5.0);
 			st[2] = new Student("mail", "Petya", "Petrov", "10:08:1999", "Russia", 5.0);
 			st[3] = new Student("mail", "Mahmud", "Mahmudov", "12:06:2001", "Egypt", 4.2);
 			st[4] = new Student("femail", "Gulnara", "Karimova", "06:08:1999", "Kazahstan", 2.5);
@@ -49,7 +51,7 @@ public class GroupMain {
 			st[7] = new Student("mail", "Bamba", "Balamba", "12:12:2000", "Uganda", 5.0);
 			st[8] = new Student("mail", "Aleksandr", "Aleksandrov", "12:12:2000", "Ukraine", 4.2);
 			st[9] = new Student("mail", "Akim", "Caraedov", "12:12:2000", "Mongolia", 4.2);
-			studProbe = new Student("femail", "Gulnara", "Karimova", "06:08:1999", "Kazahstammn", 2.5);
+			studProbe = new Student("femail", "Gulnara", "Karimova", "06:08:1999", "Kazahstan", 2.5);
 		} catch (ParseException e) {
 			System.out.println("Wrong birthday date format");
 		}
@@ -66,6 +68,7 @@ public class GroupMain {
 		System.out.println();
 		System.out.println("Sort by average ball");
 		gr.sortByAveregeBall();
+		
 		System.out.println(gr);
 		System.out.println();
 
@@ -82,11 +85,15 @@ public class GroupMain {
 
 		System.out.println();
 		System.out.println("Voencomat list ");
-		System.out.println(Arrays.toString(gr.voenCom()));
-
-		System.out.println("exclude student " + studProbe);
-		gr.excludeStudent(studProbe);
-		System.out.println(gr);
+		voencom = gr.voencom(gr.getStudentList());
+		Arrays.sort(voencom, (s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
+				: s1.getLastname().compareToIgnoreCase(s2.getLastname()));
+		System.out.println(Arrays.toString(voencom));
+		
+		FileInputStream fs;
+		System.err.println("55555555555");
+		
+		
 
 	}
 
