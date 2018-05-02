@@ -1,6 +1,8 @@
 package pack1;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 //import java.awt.Component;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -17,7 +19,7 @@ public class GroupMain {
 
 			if (option == 0) {
 				String stud1 = JOptionPane
-						.showInputDialog("Input sex, name, lastname, birthday dd:mm:yyyy, ctizenship, average ball");
+						.showInputDialog("Input  name, lastname, sex, groupe, course, average ball, birthday dd:mm:yyyy, ctizenship,");
 
 				String[] stud = stud1.split(",");
 				// System.out.println(Arrays.toString(stud));
@@ -90,8 +92,15 @@ public class GroupMain {
 				: s1.getLastname().compareToIgnoreCase(s2.getLastname()));
 		System.out.println(Arrays.toString(voencom));
 		
-		gr.createTxtFile("StudentList");		
+		gr.createTxtFile("StudentList");
 		
+		try {
+			
+			Group gr2=Group.createFromFile(new File("tempDirectory\\StudentList"));
+			System.out.println(gr2);
+		}catch (FileNotFoundException e) {
+			System.out.println(e);
+		}
 
 	}
 

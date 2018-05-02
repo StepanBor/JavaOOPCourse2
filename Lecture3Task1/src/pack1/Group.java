@@ -1,9 +1,12 @@
 package pack1;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.Arrays;
 
 public class Group implements IVoencom {
@@ -117,8 +120,6 @@ public class Group implements IVoencom {
 
 	}
 
-	
-	
 	public void sortByAge() {
 		Arrays.sort(studentList,
 				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
@@ -161,7 +162,7 @@ public class Group implements IVoencom {
 		return "there is no student with " + lastname + " lastname";
 
 	}
-	
+
 	public void createTxtFile(String fileName) {
 
 		File tempDirec = new File("tempDirectory");
@@ -170,9 +171,9 @@ public class Group implements IVoencom {
 
 		File textFile = new File("tempDirectory\\" + fileName);
 		try (PrintWriter pw = new PrintWriter(textFile)) {
-			pw.print("Name,Lastname,groupe,course,averegeBall,age,birthDay,citizenship"+System.lineSeparator());
+			pw.print("Name,Lastname,sex,groupe,course,averegeBall,age,birthDay,citizenship" + System.lineSeparator());
 			for (int i = 0; i < studentList.length; i++) {
-				if(studentList[i].getName().equals("noName")) {
+				if (studentList[i].getName().equals("noName")) {
 					continue;
 				}
 				pw.print(studentList[i].toStringShort());
@@ -189,11 +190,69 @@ public class Group implements IVoencom {
 
 	}
 
+	public static Group createFromFile(File extFile) throws FileNotFoundException {
+		String extText = "";
+		if (extFile.exists()) {
+
+			try (InputStream input = new FileInputStream(extFile)) {
+				byte[] buffer = new byte[1024];
+				int temp;
+				for (; (temp = input.read(buffer)) > 0;) {
+					for (int i = 0; i < buffer.length; i++) {
+						extText = extText + (char) buffer[i];
+					}
+				}
+			} catch (IOException e) {
+				System.out.println(e);
+			}
+		} else {
+			throw new FileNotFoundException();
+		}
+
+		String[] extGroupe = extText.split(System.lineSeparator());
+
+		Student[] tempStudent = new Student[extGroupe.length];
+		int count = 0;
+		for (int i = 0; i < extGroupe.length; i++) {
+			try {
+				tempStudent[i] = new Student(extGroupe[i].split(","));
+
+			} catch (ParseException e) {
+				tempStudent[i] = new Student();
+				System.out.println(e);
+			} catch (NumberFormatException b) {
+				tempStudent[i] = new Student();
+				System.out.println(b);
+			} catch (ArrayIndexOutOfBoundsException c) {
+				tempStudent[i] = new Student();
+				System.out.println(c);
+			}
+		}
+
+		for (int i = 0; i < tempStudent.length; i++) {
+			if (tempStudent[i].getCourse() > 0) {
+				count = i;
+				break;
+			}
+		}
+		Group group = new Group(tempStudent[count].getgroup(), tempStudent[count].getCourse(), tempStudent.length);
+
+		for (int i = 0; i < tempStudent.length; i++) {
+			if (tempStudent[i].getName().equals("noName")) {
+				continue;
+			}
+				group.enrollStudent(tempStudent[i]);
+			
+		}
+
+		return group;
+	}
+
 	@Override
 	public String toString() {
 		String temp = "group [groupName=" + groupName + ", course=" + course + ", studentList:\n";
 
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < studentList.length; i++) {
 			temp = temp + studentList[i].toString();
 		}
 		return temp;
