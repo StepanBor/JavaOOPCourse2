@@ -1,8 +1,10 @@
 package pack1;
 
+import java.math.BigInteger;
+
 public class NewThread implements Runnable {
 
-	private long result;
+	private String result;
 	private int number;
 		
 	
@@ -12,20 +14,26 @@ public class NewThread implements Runnable {
 		this.number = number;
 	}
 	
-	public long factorial(int num) {
+	public NewThread() {
+		super();
+		
+	}
+
+	public String factorial(int num) {
 		
 		if(num==0|num==1) {
 			
-			return 1;
+			return "1";
 		}
 		
-		long fact=1L;
+		BigInteger fact=new BigInteger("1");
+		
 		
 		for (int i = 1; i <= num; i++) {
-			fact=fact*i;			
+			fact=fact.multiply(new BigInteger(Integer.toString(i)));			
 			
 		}		
-		return fact;
+		return fact.toString();
 		
 	}
 	
@@ -41,7 +49,7 @@ public class NewThread implements Runnable {
 	public void run() {
 		
 		result=factorial(number);
-		System.out.println(Thread.currentThread().getName()+result);
+		System.out.println("fact("+number+")= "+result+"---"+Thread.currentThread().getName());
 				
 	}
 
