@@ -1,6 +1,7 @@
 package pack1;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class BlackList {
 
@@ -32,6 +33,9 @@ public class BlackList {
 
 	}
 
+	
+	Comparator<Object> c=BlackList::compare;
+	
 	public <T> void removeFromBlackList(T obj) {
 
 		for (int j = 0; j < blackList.length; j++) {
@@ -58,7 +62,7 @@ public class BlackList {
 
 	}
 
-	public int compare(Object o1, Object o2) {
+	public static int compare(Object o1, Object o2) {
 
 		if (o1 == null & o2 != null) {
 			return -1;

@@ -1,6 +1,7 @@
 package pack1;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Stack {
 
@@ -49,6 +50,8 @@ public class Stack {
 	// this.count = count;
 	// }
 
+	
+	
 	public <T> void putObject(T put) {
 		
 		if(blackList.isInBlakList(put)) {
@@ -110,6 +113,8 @@ public class Stack {
 		return temp;
 	}
 
+	Comparator<Object> c=BlackList::compare;
+	
 	@Override
 	public String toString() {
 		return "Stack [size=" + size + ", count=" + count + ", arr=" + Arrays.toString(arr) + "\n, type="

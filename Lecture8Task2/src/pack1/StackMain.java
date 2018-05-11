@@ -1,5 +1,7 @@
 package pack1;
 
+import java.util.Comparator;
+
 public class StackMain {
 
 	public static void main(String[] args) {
@@ -28,6 +30,7 @@ public class StackMain {
 
 		s.putObject(r);
 		s.putObject(v);
+	
 
 		Human b = s.getObject();
 

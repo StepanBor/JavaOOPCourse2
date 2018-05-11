@@ -1,6 +1,10 @@
 package pack1;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,6 +28,18 @@ public class SymbolCountMain {
 	}
 	
 	public static String readFileToString(File file) {
+		File text=new File("text.txt");
+		try(Reader readFile=new FileReader(text)) {
+			System.out.println(text.exists());
+			char[] buffer=new char[20];
+			String textString;
+			
+					
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return null;
 		
