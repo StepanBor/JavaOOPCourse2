@@ -5,10 +5,10 @@ public class Symbol {
 	private char symbol;
 	private int count;
 
-	public Symbol(char symbol) {
+	public Symbol(char symbol, int count) {
 		super();
 		this.symbol = symbol;
-		this.count = 0;
+		this.count = count;
 	}
 
 	public Symbol() {
@@ -34,9 +34,42 @@ public class Symbol {
 		this.count = count;
 	}
 
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((chf == null) ? 0 : chf.hashCode());
+		result = prime * result + count;
+		result = prime * result + symbol;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Symbol other = (Symbol) obj;
+		if (chf == null) {
+			if (other.chf != null)
+				return false;
+		} else if (!chf.equals(other.chf))
+			return false;
+		if (count != other.count)
+			return false;
+		if (symbol != other.symbol)
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
-		return "Symbol [symbol=" + symbol + ", count=" + count + "]";
+		return "[symbol=" + symbol + ", count=" + count + "]";
 	}
 
 }

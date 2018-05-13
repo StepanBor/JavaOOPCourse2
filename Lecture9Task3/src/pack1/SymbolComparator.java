@@ -20,11 +20,11 @@ public class SymbolComparator implements Comparator<Symbol> {
 		}
 		
 		if(o1.getCount()>o2.getCount()) {
-			return 1;
+			return -1;
 		}
 		
 		if(o1.getCount()<o2.getCount()) {
-			return -1;
+			return 1;
 		}
 		
 		return 0;
