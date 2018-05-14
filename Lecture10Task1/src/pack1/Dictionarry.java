@@ -15,5 +15,11 @@ public class Dictionarry {
 		dict.put("chicken", "курка");
 		dict.put("fly", "муха");
 	}
+	
+	public static void saveDict() {
+		
+		
+		
+	}
 
 }

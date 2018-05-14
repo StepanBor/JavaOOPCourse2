@@ -8,16 +8,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-
 public class TranslatorMain {
 
 	public static void main(String[] args) {
 
+		Dictionarry dict = new Dictionarry();
+
 		File fileIn = new File("English.in");
-		
 
 		String engIn = "";
-		
+
 		try {
 			engIn = readFileToString(fileIn);
 		} catch (FileNotFoundException e) {
@@ -26,17 +26,20 @@ public class TranslatorMain {
 		}
 
 		System.out.println(engIn);
-		
-		String[] engWords = engIn.split("[, ]");
 
-		for (int i = 0; i < engWords.length; i++) {
+		Dictionarry.dict.put("arm", "Ñ€ÑƒÐºÐ°");
 
-			System.out.println(engWords[i]);
+		try {
+			String translatedText = readFileToString(translate(readFileToString(fileIn)));
+			System.out.println(translatedText);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		Dictionarry.dict.put("arm", "ðóêà");
-		
-		
 	}
 
 	public static String readFileToString(File file) throws FileNotFoundException {
@@ -64,21 +67,30 @@ public class TranslatorMain {
 		return textString;
 
 	}
-	
+
 	public static File translate(String eng) throws IOException {
-		
-		File fileOut=new File("Ukranian.out");
-		
+
+		File fileOut = new File("Ukranian.out");
+
 		fileOut.createNewFile();
-		
-		try(Writer wrFile=new FileWriter(fileOut)){
-			
-		}catch (IOException e) {
+
+		String[] engWords = eng.split("[, ]");
+
+		try (Writer wrFile = new FileWriter(fileOut)) {
+
+			for (String word : engWords) {
+
+				if (Dictionarry.dict.containsKey(word)) {
+					wrFile.write(Dictionarry.dict.get(word) + " ");
+				}
+			}
+
+		} catch (IOException e) {
 			System.out.println(e);
 		}
-		
-		return null;
-		
+
+		return fileOut;
+
 	}
 
 }
