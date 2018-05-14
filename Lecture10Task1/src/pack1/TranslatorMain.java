@@ -1,31 +1,83 @@
 package pack1;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
 
 public class TranslatorMain {
 
 	public static void main(String[] args) {
+
+		File fileIn = new File("English.in");
 		
-		Map<String,String> dict=new TreeMap<>();
+
+		String engIn = "";
 		
-		dict.put("dog", "собака");
-		dict.put("cat", "кіт");
-		dict.put("mouse", "миша");
-		dict.put("chicken", "курка");
-		dict.put("fly", "муха");
+		try {
+			engIn = readFileToString(fileIn);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println(engIn);
 		
-		System.out.println(dict);
+		String[] engWords = engIn.split("[, ]");
+
+		for (int i = 0; i < engWords.length; i++) {
+
+			System.out.println(engWords[i]);
+		}
+
+		Dictionarry.dict.put("arm", "����");
 		
-		Dictionarry dc=new Dictionarry();
-		System.out.println(dc.li);
 		
+	}
+
+	public static String readFileToString(File file) throws FileNotFoundException {
+
+		String textString = "";
+
+		if (file.exists()) {
+
+			try (BufferedReader readFile = new BufferedReader(new FileReader(file))) {
+
+				String temp;
+				while ((temp = readFile.readLine()) != null) {
+
+					textString = textString + temp + System.lineSeparator();
+
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			throw new FileNotFoundException();
+		}
+
+		return textString;
 
 	}
 	
-	public static void addToDict(String Eng, String Ukr) {
+	public static File translate(String eng) throws IOException {
 		
+		File fileOut=new File("Ukranian.out");
 		
+		fileOut.createNewFile();
+		
+		try(Writer wrFile=new FileWriter(fileOut)){
+			
+		}catch (IOException e) {
+			System.out.println(e);
+		}
+		
+		return null;
 		
 	}
 

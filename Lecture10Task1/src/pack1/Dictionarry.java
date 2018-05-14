@@ -1,16 +1,19 @@
 package pack1;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
+
 
 public class Dictionarry {
 	
-	Map<String,String> dict2=new TreeMap<>();
-	
-	List<String> li=new ArrayList<>();
-	
-	li.add("sts");
+	static Map<String,String> dict=new TreeMap<>();
+
+	public Dictionarry() {
+		super();
+		dict.put("dog", "собака");
+		dict.put("cat", "кіт");
+		dict.put("mouse", "миша");
+		dict.put("chicken", "курка");
+		dict.put("fly", "муха");
+	}
 
 }

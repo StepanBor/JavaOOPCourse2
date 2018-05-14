@@ -22,6 +22,7 @@ public class SymbolCountMain {
 		String text = null;
 		try {
 			text = readFileToString(extText);
+			System.out.println(text);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -66,8 +67,8 @@ public class SymbolCountMain {
 			try (Reader readFile = new FileReader(file)) {
 				char[] buffer = new char[20];
 				int temp;
-				while ((temp = readFile.read()) > 0) {
-					readFile.read(buffer);
+				while ((temp = readFile.read(buffer)) > 0) {
+//					readFile.read(buffer);
 					for (int i = 0; i < buffer.length; i++) {
 						textString = textString + buffer[i];
 					}
