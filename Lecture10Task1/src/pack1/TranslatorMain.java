@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
+
+import javax.swing.JOptionPane;
+
 public class TranslatorMain {
 
 	public static void main(String[] args) {
@@ -39,7 +42,39 @@ public class TranslatorMain {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		for (;;) {
+			int option = JOptionPane.showConfirmDialog(null, "Do you want to add words to dictionary manualy?");
 
+			if (option == 0) {
+				String newWord = JOptionPane
+						.showInputDialog("Input  English word and translation (English-Ukranian)");
+
+				String[] newWordArr = newWord.split("[, -]");
+				
+				Dictionarry.dict.put(newWordArr[0], newWordArr[1]);
+				
+			} else {
+				break;
+			}
+		}
+
+		for (;;) {
+			int option = JOptionPane.showConfirmDialog(null, "Do you want to save dictionary in external file?");
+
+			if (option == 0) {
+				
+				Dictionarry.saveDict();
+				
+				JOptionPane.showMessageDialog(null,"dictionary have been saved to Dictionary.txt file");
+				
+			} else {
+				break;
+			}
+		}
+		
+		
+		
 	}
 
 	public static String readFileToString(File file) throws FileNotFoundException {
