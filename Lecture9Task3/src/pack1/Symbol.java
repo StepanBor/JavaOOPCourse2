@@ -2,7 +2,8 @@ package pack1;
 
 public class Symbol {
 
-	private char symbol;
+//	private char symbol;
+	private Character symbol;
 	private int count;
 
 	public Symbol(char symbol, int count) {
@@ -16,7 +17,6 @@ public class Symbol {
 
 	}
 	
-	Character chf;
 	
 	public char getSymbol() {
 		return symbol;
@@ -40,7 +40,7 @@ public class Symbol {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((chf == null) ? 0 : chf.hashCode());
+		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
 		result = prime * result + count;
 		result = prime * result + symbol;
 		return result;
@@ -55,10 +55,10 @@ public class Symbol {
 		if (getClass() != obj.getClass())
 			return false;
 		Symbol other = (Symbol) obj;
-		if (chf == null) {
-			if (other.chf != null)
+		if (symbol == null) {
+			if (other.symbol != null)
 				return false;
-		} else if (!chf.equals(other.chf))
+		} else if (!symbol.equals(other.symbol))
 			return false;
 		if (count != other.count)
 			return false;

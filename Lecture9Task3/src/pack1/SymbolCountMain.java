@@ -65,11 +65,11 @@ public class SymbolCountMain {
 		if (file.exists()) {
 
 			try (Reader readFile = new FileReader(file)) {
-				char[] buffer = new char[20];
 				int temp;
+				char[] buffer = new char[20];
 				while ((temp = readFile.read(buffer)) > 0) {
 //					readFile.read(buffer);
-					for (int i = 0; i < buffer.length; i++) {
+					for (int i = 0; i < temp; i++) {
 						textString = textString + buffer[i];
 					}
 				}

@@ -19,7 +19,7 @@ public class SymbolComparator implements Comparator<Symbol> {
 			return 0;
 		}
 		
-		if(o1.getCount()>o2.getCount()) {
+		if(o1.getCount()>=o2.getCount()) {
 			return -1;
 		}
 		
