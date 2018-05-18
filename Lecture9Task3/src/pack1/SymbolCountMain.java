@@ -5,17 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
+
 
 public class SymbolCountMain {
 
 	public static void main(String[] args) {
+		
+		Comparator<Symbol> comp=new SymbolComparator();
 
-		Set<Symbol> symbolSet = new TreeSet<Symbol>(new SymbolComparator());
+		Set<Symbol> symbolSet = new TreeSet<Symbol>(comp.thenComparing(new SymbolComparator2()));
 
 		File extText = new File("text.txt");
 
@@ -54,6 +53,7 @@ public class SymbolCountMain {
 
 		}
 
+				
 		
 		
 	}

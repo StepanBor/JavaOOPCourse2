@@ -13,7 +13,7 @@ public class ASCIIArtText {
 
 		File fontArt = new File("3D-ASCII alphabet.txt");
 					
-		textToASCII("heloo world",fontArt);
+		textToASCII("Star Wars",fontArt);
 		
 
 	}
