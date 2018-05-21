@@ -3,7 +3,7 @@ package pack1;
 import java.util.Comparator;
 
 public class SymbolComparator2 implements Comparator<Symbol> {
-
+	
 	@Override
 	public int compare(Symbol o1, Symbol o2) {
 		
@@ -19,7 +19,7 @@ public class SymbolComparator2 implements Comparator<Symbol> {
 			return 0;
 		}
 		
-		if(o1.getSymbol()>o2.getSymbol()) {
+		if(o1.getSymbol()>=o2.getSymbol()) {
 			return 1;
 		}
 		
@@ -29,5 +29,5 @@ public class SymbolComparator2 implements Comparator<Symbol> {
 		
 		return 0;
 	}
-	
+
 }
