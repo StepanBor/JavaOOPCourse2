@@ -4,11 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class Human {
 
-	SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
-	
+//	SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
+	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
 	
 	private int age;
 	private String sex;
@@ -106,8 +107,22 @@ public class Human {
 				+ birthDay + ", citizenship=" + citizenship + "]";
 	}
 
-	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Human)) return false;
+		Human human = (Human) o;
+		return getAge() == human.getAge() &&
+				Objects.equals(getSex(), human.getSex()) &&
+				Objects.equals(getName(), human.getName()) &&
+				Objects.equals(getLastname(), human.getLastname()) &&
+				Objects.equals(getBirthDay(), human.getBirthDay()) &&
+				Objects.equals(getCitizenship(), human.getCitizenship());
+	}
 
-	
+	@Override
+	public int hashCode() {
 
+		return Objects.hash(getAge(), getSex(), getName(), getLastname(), getBirthDay(), getCitizenship());
+	}
 }

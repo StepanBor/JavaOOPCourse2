@@ -7,275 +7,315 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Group implements IVoencom {
 
-	private String groupName;
-	private int course;
-	private int groupSize;
-	private int count;
-	private Student[] studentList;
+    private String groupName;
+    private int course;
+    private int groupSize;
+    private int count;
+    private List<Student> studentList = new ArrayList<Student>();
 
-	public Group(String groupName, int course, int groupSize) {
-		super();
-		this.groupName = groupName;
-		this.course = course;
-		this.groupSize = groupSize;
-		count = 0;
-		studentList = new Student[groupSize];
-		for (int i = 0; i < studentList.length; i++) {
-			studentList[i] = new Student();
-		}
+    public Group(String groupName, int course, int groupSize) {
+        super();
+        this.groupName = groupName;
+        this.course = course;
+        this.groupSize = groupSize;
+        count = 0;
+//		studentList = new ArrayList<Student>();
 
-	}
 
-	public Group() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    }
 
-	public String getgroupName() {
-		return groupName;
-	}
+    public Group() {
+        super();
+//		studentList = new ArrayList<Student>();
 
-	public Student[] getStudentList() {
-		return studentList;
-	}
+    }
 
-	public void setgroupName(String groupName) {
-		this.groupName = groupName;
-	}
+    public String getgroupName() {
+        return groupName;
+    }
 
-	public int getCourse() {
-		return course;
-	}
+    public List<Student> getStudentList() {
+        return studentList;
+    }
 
-	public void setCourse(int course) {
-		this.course = course;
-	}
+    public void setgroupName(String groupName) {
+        this.groupName = groupName;
+    }
 
-	public int getgroupSize() {
-		return groupSize;
-	}
+    public int getCourse() {
+        return course;
+    }
 
-	public void setgroupSize(int groupSize) {
-		this.groupSize = groupSize;
-	}
+    public void setCourse(int course) {
+        this.course = course;
+    }
 
-	public int getCount() {
-		return count;
-	}
+//	public int getgroupSize() {
+//		return groupSize;
+//	}
+//
+//	public void setgroupSize(int groupSize) {
+//		this.groupSize = groupSize;
+//	}
 
-	public void enrollStudent(Student student) /* throws GroupOverflowException */ {
+//	public int getCount() {
+//		return count;
+//	}
 
-		try {
-			if (count < groupSize) {
-				studentList[count] = student;
-				student.setgroupName(groupName);
-				student.setCourse(course);
-				count++;
-			} else {
-				throw new GroupOverflowException();
-			}
-		} catch (GroupOverflowException e) {
-			System.out.println(e.getMessage());
-			return;
-		}
-	}
+    public void enrollStudent(Student student) /* throws GroupOverflowException */ {
 
-	public void swapStudent(int i, int j) {
-		Student temp = studentList[i];
-		studentList[i] = studentList[j];
-		studentList[j] = temp;
-	}
+//		try {
+//			if (count < groupSize) {
+//				studentList[count] = student;
+//        student.setgroupName(groupName);
+//        student.setCourse(course);
+//				count++;
+//			} else {
+//				throw new GroupOverflowException();
+//			}
+//		} catch (GroupOverflowException e) {
+//			System.out.println(e.getMessage());
+//			return;
+//		}
+        studentList.add(student);
+        student.setgroupName(groupName);
+        student.setCourse(course);
+//		System.out.println(studentList);
 
-	public void excludeStudent(int index) {
+    }
 
-		if (index <= count) {
-			for (int i = 0; i < studentList.length - 1; i++) {
-				if (index == i) {
-					swapStudent(i, i + 1);
-					index++;
-				}
-			}
+//	public void swapStudent(int i, int j) {
+//		Student temp = studentList[i];
+//		studentList[i] = studentList[j];
+//		studentList[j] = temp;
+//	}
 
-			studentList[index] = new Student();
-			count--;
-		} else {
-			System.out.println("Student not found.");
-		}
+    public void excludeStudent(int index) {
 
-	}
+        studentList.remove(index);
 
-	public void excludeStudent(Student student) {
+//		if (index <= count) {
+//			for (int i = 0; i < studentList.length - 1; i++) {
+//				if (index == i) {
+//					swapStudent(i, i + 1);
+//					index++;
+//				}
+//			}
+//
+//			studentList[index] = new Student();
+//			count--;
+//		} else {
+//			System.out.println("Student not found.");
+//		}
 
-		for (int i = 0; i < studentList.length; i++) {
-			if (studentList[i].myEquals(student)) {
-				int index = i;
-				excludeStudent(index);
-			}
-		}
-		System.out.println("There is no this student in group");
+    }
 
-	}
+    public void excludeStudent(Student student) {
 
-	public void sortByAge() {
-		Arrays.sort(studentList,
-				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
-						: (s1.getAge() - s2.getAge()));
-	}
+        for (Student stud : studentList) {
+            if (stud.equals(student)) {
+                int index = studentList.indexOf(stud);
+                excludeStudent(index);
+                return;
+            }
+        }
+//		for (int i = 0; i < studentList.length; i++) {
+//			if (studentList[i].myEquals(student)) {
+//				int index = i;
+//				excludeStudent(index);
+//			}
+//		}
+        System.out.println("There is no this student in group");
 
-	public void sortByLastname() {
-		Arrays.sort(studentList,
-				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
-						: s1.getLastname().compareToIgnoreCase(s2.getLastname()));
-	}
+    }
 
-	public void sortByAveregeBall() {
-		Arrays.sort(studentList,
-				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
-						: (int) (s1.getAveregeBall() * 10 - s2.getAveregeBall() * 10));
-	}
+    public void sortByAge() {
+//		Arrays.sort(studentList,
+//				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
+//						: (s1.getAge() - s2.getAge()));
+        studentList.sort(new CompareByAge());
+    }
 
-	public void sortByParametr(int param) {
-		if (param == 1) {
-			System.out.println("Sort by age");
-			sortByAge();
-		}
-		if (param == 2) {
-			System.out.println("Sort by lastname");
-			sortByLastname();
-		}
-		if (param == 3) {
-			System.out.println("Sort by average ball");
-			sortByAveregeBall();
-		}
-	}
+    //
+    public void sortByLastname() {
+//		Arrays.sort(studentList,
+//				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
+//						: s1.getLastname().compareToIgnoreCase(s2.getLastname()));
+        studentList.sort(new CompareByLastname());
+    }
 
-	public String searchStudent(String lastname) {
-		for (int i = 0; i < studentList.length; i++) {
-			if (studentList[i].getLastname().equalsIgnoreCase(lastname)) {
-				return studentList[i].toString();
-			}
-		}
-		return "there is no student with " + lastname + " lastname";
+    //
+    public void sortByAveregeBall() {
+//		Arrays.sort(studentList,
+//				(s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
+//						: (int) (s1.getAveregeBall() * 10 - s2.getAveregeBall() * 10));
+        studentList.sort(new CompareByAvarageBall());
+    }
 
-	}
 
-	public void createTxtFile(String fileName) {
+    public void sortByParametr(int param) {
+        if (param == 1) {
+            System.out.println("Sort by age");
+            sortByAge();
+        }
+        if (param == 2) {
+            System.out.println("Sort by lastname");
+            sortByLastname();
+        }
+        if (param == 3) {
+            System.out.println("Sort by average ball");
+            sortByAveregeBall();
+        }
+    }
 
-		File tempDirec = new File("tempDirectory");
+    public String searchStudent(String lastname) {
 
-		tempDirec.mkdir();
+        for (Student student : studentList) {
+//			if (student.getLastname().equalsIgnoreCase(lastname)) {
+//				return student.toString();
+//			}
+            System.out.println(student);
+        }
 
-		File textFile = new File("tempDirectory\\" + fileName);
-		try (PrintWriter pw = new PrintWriter(textFile)) {
-			pw.print("Name,Lastname,sex,groupe,course,averegeBall,age,birthDay,citizenship" + System.lineSeparator());
-			for (int i = 0; i < studentList.length; i++) {
-				if (studentList[i].getName().equals("noName")) {
-					continue;
-				}
-				pw.print(studentList[i].toStringShort());
-			}
-		} catch (FileNotFoundException e1) {
+        return "there is no student with " + lastname + " lastname";
 
-			e1.printStackTrace();
-		}
-		try {
-			textFile.createNewFile();
-		} catch (IOException e) {
-			System.out.println(e);
-		}
+    }
 
-	}
+    public void createTxtFile(String fileName) {
 
-	public static Group createFromFile(File extFile) throws FileNotFoundException {
-		String extText = "";
-		if (extFile.exists()) {
+        File tempDirec = new File("tempDirectory");
 
-			try (InputStream input = new FileInputStream(extFile)) {
-				byte[] buffer = new byte[1024];
-				int temp;
-				for (; (temp = input.read(buffer)) > 0;) {
-					for (int i = 0; i < buffer.length; i++) {
-						extText = extText + (char) buffer[i];
-					}
-				}
-			} catch (IOException e) {
-				System.out.println(e);
-			}
-		} else {
-			throw new FileNotFoundException();
-		}
+        tempDirec.mkdir();
 
-		String[] extGroupe = extText.split(System.lineSeparator());
+        File textFile = new File("tempDirectory\\" + fileName);
+        try (PrintWriter pw = new PrintWriter(textFile)) {
+            pw.print("Name,Lastname,sex,groupe,course,averegeBall,age,birthDay,citizenship" + System.lineSeparator());
 
-		Student[] tempStudent = new Student[extGroupe.length];
-		int count = 0;
-		for (int i = 0; i < extGroupe.length; i++) {
-			try {
-				tempStudent[i] = new Student(extGroupe[i].split(","));
+            for (Student student : studentList) {
+                if (student.getName().equals("noName")) {
+                    continue;
+                }
+                pw.print(student.toStringShort());
+            }
+        } catch (FileNotFoundException e1) {
 
-			} catch (ParseException e) {
-				tempStudent[i] = new Student();
-				System.out.println(e);
-			} catch (NumberFormatException b) {
-				tempStudent[i] = new Student();
-				System.out.println(b);
-			} catch (ArrayIndexOutOfBoundsException c) {
-				tempStudent[i] = new Student();
-				System.out.println(c);
-			}
-		}
+            e1.printStackTrace();
+        }
+        try {
+            textFile.createNewFile();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
-		for (int i = 0; i < tempStudent.length; i++) {
-			if (tempStudent[i].getCourse() > 0) {
-				count = i;
-				break;
-			}
-		}
-		Group group = new Group(tempStudent[count].getgroup(), tempStudent[count].getCourse(), tempStudent.length);
+    }
 
-		for (int i = 0; i < tempStudent.length; i++) {
-			if (tempStudent[i].getName().equals("noName")) {
-				continue;
-			}
-				group.enrollStudent(tempStudent[i]);
-			
-		}
+    public static Group createFromFile(File extFile) throws FileNotFoundException {
+        String extText = "";
+        if (extFile.exists()) {
 
-		return group;
-	}
+            try (InputStream input = new FileInputStream(extFile)) {
+                byte[] buffer = new byte[1024];
+                int temp;
+                for (; (temp = input.read(buffer)) > 0; ) {
+                    for (int i = 0; i < buffer.length; i++) {
+                        extText = extText + (char) buffer[i];
+                    }
+                }
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        } else {
+            throw new FileNotFoundException();
+        }
 
-	@Override
-	public String toString() {
-		String temp = "group [groupName=" + groupName + ", course=" + course + ", studentList:\n";
+        String[] extGroupe = extText.split(System.lineSeparator());
 
-		for (int i = 0; i < studentList.length; i++) {
-			temp = temp + studentList[i].toString();
-		}
-		return temp;
-	}
+        Student[] tempStudent = new Student[extGroupe.length];
+        int count = 0;
+        for (int i = 0; i < extGroupe.length; i++) {
+            try {
+                tempStudent[i] = new Student(extGroupe[i].split(","));
 
-	@Override
-	public Human[] voencom(Human[] human) {
+            } catch (ParseException e) {
+                tempStudent[i] = new Student();
+                System.out.println(e);
+            } catch (NumberFormatException b) {
+                tempStudent[i] = new Student();
+                System.out.println(b);
+            } catch (ArrayIndexOutOfBoundsException c) {
+                tempStudent[i] = new Student();
+                System.out.println(c);
+            }
+        }
 
-		int tempCount = 0;
-		Human[] tempArr = new Human[1];
-		for (int i = 0; i < human.length; i++) {
-			if (human[i] != null && human[i].getAge() >= 18 && human[i].getSex().equals("mail")) {
-				if (tempCount == 0) {
-					tempArr[tempCount++] = human[i];
+        for (int i = 0; i < tempStudent.length; i++) {
+            if (tempStudent[i].getCourse() > 0) {
+                count = i;
+                break;
+            }
+        }
+        Group group = new Group(tempStudent[count].getgroup(), tempStudent[count].getCourse(), tempStudent.length);
 
-				} else {
-					tempArr = Arrays.copyOf(tempArr, tempArr.length + 1);
-					tempArr[tempCount++] = human[i];
-				}
-			}
-		}
-		return tempArr;
+        for (int i = 0; i < tempStudent.length; i++) {
+            if (tempStudent[i].getName().equals("noName")) {
+                continue;
+            }
+            group.enrollStudent(tempStudent[i]);
 
-	}
+        }
+
+        return group;
+    }
+
+    @Override
+    public String toString() {
+        String temp = "group [groupName=" + groupName + ", course=" + course + ", studentList:\n";
+
+        for (Student student : studentList) {
+//			System.out.println(student);
+            temp = temp + student.toString();
+        }
+        return temp;
+    }
+
+    @Override
+    public Human[] voencom(List<Student> human) {
+
+        int tempCount = 0;
+        Human[] tempArr = new Human[1];
+        for (Human hum : human) {
+            if (hum != null && hum.getAge() >= 18 && hum.getSex().equals("mail")) {
+                if (tempCount == 0) {
+                    tempArr[tempCount++] = hum;
+
+                } else {
+                    tempArr = Arrays.copyOf(tempArr, tempArr.length + 1);
+                    tempArr[tempCount++] = hum;
+                }
+            }
+        }
+        return tempArr;
+
+    }
+
+    public void addGroupToDatabase(Group this){
+
+        for (Student st:studentList) {
+
+            try {
+                GroupDatabase.addStudent(st);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
 
 }

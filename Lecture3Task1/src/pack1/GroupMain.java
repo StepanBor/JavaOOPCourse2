@@ -43,17 +43,17 @@ public class GroupMain {
 		Student[] st = new Student[10];
 		Student studProbe = new Student();
 		try {
-			st[0] = new Student("femail", "Maria", "Ponomarenko", "12:12:1998", "Ukraine", 2.5);
-			st[1] = new Student("mail", "Vlad", "Dracula", "12:12:1212", "Romania", 5.0);
-			st[2] = new Student("mail", "Petya", "Petrov", "10:08:1999", "Russia", 5.0);
-			st[3] = new Student("mail", "Mahmud", "Mahmudov", "12:06:2001", "Egypt", 4.2);
-			st[4] = new Student("femail", "Gulnara", "Karimova", "06:08:1999", "Kazahstan", 2.5);
-			st[5] = new Student("mail", "Borya", "Vasiliev", "12:12:1991", "Ukraine", 2.5);
-			st[6] = new Student("mail", "Nicolay", "Petrenko", "12:12:2000", "Ukraine", 3.0);
-			st[7] = new Student("mail", "Bamba", "Balamba", "12:12:2000", "Uganda", 5.0);
-			st[8] = new Student("mail", "Aleksandr", "Aleksandrov", "12:12:2000", "Ukraine", 4.2);
-			st[9] = new Student("mail", "Akim", "Caraedov", "12:12:2000", "Mongolia", 4.2);
-			studProbe = new Student("femail", "Gulnara", "Karimova", "06:08:1999", "Kazahstan", 2.5);
+			st[0] = new Student("femail", "Maria", "Ponomarenko", "1998-12-12", "Ukraine", 2.5);
+			st[1] = new Student("mail", "Vlad", "Dracula", "1212-12-12", "Romania", 5.0);
+			st[2] = new Student("mail", "Petya", "Petrov", "1999-10-10", "Russia", 5.0);
+			st[3] = new Student("mail", "Mahmud", "Mahmudov", "2001-12-12", "Egypt", 4.2);
+			st[4] = new Student("femail", "Gulnara", "Karimova", "1999-10-10", "Kazahstan", 2.5);
+			st[5] = new Student("mail", "Borya", "Vasiliev", "1991-10-10", "Ukraine", 2.5);
+			st[6] = new Student("mail", "Nicolay", "Petrenko", "2000-10-10", "Ukraine", 3.0);
+			st[7] = new Student("mail", "Bamba", "Balamba", "2000-12-12", "Uganda", 5.0);
+			st[8] = new Student("mail", "Aleksandr", "Aleksandrov", "2000-12-12", "Ukraine", 4.2);
+			st[9] = new Student("mail", "Akim", "Caraedov", "2000-12-12", "Mongolia", 4.2);
+			studProbe = new Student("femail", "Gulnara", "Karimova", "1999-12-12", "Kazahstan", 2.5);
 		} catch (ParseException e) {
 			System.out.println("Wrong birthday date format");
 		}
@@ -61,6 +61,7 @@ public class GroupMain {
 		// try {
 		for (int i = 0; i < st.length; i++) {
 			gr.enrollStudent(st[i]);
+//			System.out.println(st[i]);
 		}
 		// } catch (GroupOverflowException e) {
 		// System.out.println(e);
@@ -70,7 +71,7 @@ public class GroupMain {
 		System.out.println();
 		System.out.println("Sort by average ball");
 		gr.sortByAveregeBall();
-		
+
 		System.out.println(gr);
 		System.out.println();
 
@@ -88,19 +89,31 @@ public class GroupMain {
 		System.out.println();
 		System.out.println("Voencomat list ");
 		voencom = gr.voencom(gr.getStudentList());
-		Arrays.sort(voencom, (s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
-				: s1.getLastname().compareToIgnoreCase(s2.getLastname()));
-		System.out.println(Arrays.toString(voencom));
+
+
+//		Arrays.sort(voencom, (s1, s2) -> CheckNull.checkNull(s1, s2) != CheckNull.CONST ? CheckNull.checkNull(s1, s2)
+//				: s1.getLastname().compareToIgnoreCase(s2.getLastname()));
+//		System.out.println(Arrays.toString(voencom));
+//
+//		gr.createTxtFile("StudentList");
 		
-		gr.createTxtFile("StudentList");
+//		try {
+//
+//			Group gr2=Group.createFromFile(new File("tempDirectory\\StudentList"));
+//			System.out.println(gr2);
+//		}catch (FileNotFoundException e) {
+//			System.out.println(e);
+//		}
 		
-		try {
-			
-			Group gr2=Group.createFromFile(new File("tempDirectory\\StudentList"));
-			System.out.println(gr2);
-		}catch (FileNotFoundException e) {
-			System.out.println(e);
-		}
+		
+//		try {
+//
+//			GroupDatabase.addStudent(gr.getStudentList().get(1));
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+
+		gr.addGroupToDatabase();
 
 	}
 

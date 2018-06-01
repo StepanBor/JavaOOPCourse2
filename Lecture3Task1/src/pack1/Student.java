@@ -2,10 +2,11 @@ package pack1;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 public class Student extends Human {
 
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy");
+	private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
 
 	private String groupName;
 	private int course;
@@ -83,4 +84,20 @@ public class Student extends Human {
 
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Student)) return false;
+		if (!super.equals(o)) return false;
+		Student student = (Student) o;
+		return getCourse() == student.getCourse() &&
+				Double.compare(student.getAveregeBall(), getAveregeBall()) == 0 &&
+				Objects.equals(groupName, student.groupName);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(super.hashCode(), groupName, getCourse(), getAveregeBall());
+	}
 }
